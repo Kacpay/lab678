@@ -1,0 +1,53 @@
+name: build
+
+on:
+  push:
+    branches:
+      - main
+
+schedule:
+  - cron: "0 0 * * 0"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get install -y jq
+          sudo apt-get install -y yamllint
+          sudo apt-get install -y libxml2-utils
+
+      - name: Task0
+        run: bash task0.sh
+
+      - name: Task1
+        run: bash task1.sh
+
+      - name: Task2
+        run: bash task2.sh
+
+      - name: Task3
+        run: bash task3.sh
+
+      - name: Task4
+        run: bash task4.sh
+
+      - name: Task5
+        run: bash task5.sh
+
+      - name: Task6
+        run: bash task6.sh
+
+      - name: Task7
+        run: bash task7.sh
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: MyExecutable
+          path: path/to/exe/file.exe
